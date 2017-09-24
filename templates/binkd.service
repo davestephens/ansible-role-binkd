@@ -1,0 +1,15 @@
+[Unit]
+Description=BinkD FTN Server
+After=syslog.target network.target
+
+[Service]
+Type=forking
+ExecStart={{ binkd.home }}/sbin/binkd -D {{ binkd.home }}/etc/binkd.conf
+PIDFile=/var/run/binkd.pid
+ExecReload=/bin/kill -HUP ${MAINPID}
+ExecStop=/bin/kill ${MAINPID}
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

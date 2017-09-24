@@ -1,0 +1,23 @@
+galaxy_info:
+  author: David Stephens
+  description: binkd FTN mailer installer
+
+  issue_tracker_url: https://github.com/davestephens/ansible-role-binkd/issues
+
+  license: MIT
+
+  min_ansible_version: 1.2
+
+  platforms:
+  - name: Ubuntu
+    versions:
+    - all
+
+  - name: Debian
+    versions:
+    - all
+
+  galaxy_tags:
+    - bbs
+    - ftn
+    - binkd

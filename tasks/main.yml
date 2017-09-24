@@ -1,0 +1,37 @@
+---
+- name: Install dependencies
+  package:
+    name: git
+
+- name: Clone Binkd
+  git:
+    repo: "{{ binkd.repo }}"
+    dest: "{{ binkd.src }}"
+
+- name: Copy mkfls
+  shell: "cp {{ binkd.src }}/mkfls/unix/* {{ binkd.src }}"
+
+- name: Configure
+  shell: "cd {{ binkd.src }} && ./configure --prefix={{ binkd.home }}"
+
+- name: Make
+  make:
+    chdir: "{{ binkd.src }}"
+    params:
+      j: 4
+
+- name: Install
+  make:
+    chdir: "{{ binkd.src }}"
+    target: install
+
+- name: Remove downloaded source
+  file:
+    path: "{{ binkd.src }}"
+    state: absent
+
+- name: Template systemd unit
+  template:
+    src: binkd.service
+    dest: /lib/systemd/system/binkd.service
+

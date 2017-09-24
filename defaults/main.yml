@@ -1,0 +1,5 @@
+---
+binkd:
+  home: "/bbs/binkd"
+  repo: https://github.com/pgul/binkd.git
+  src: "{{ ansible_env.HOME }}/binkd-src"
