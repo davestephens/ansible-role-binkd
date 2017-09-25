@@ -13,6 +13,7 @@ Role Variables
 ````yaml
 binkd:
   home: "/bbs/binkd" # where to install Binkd
+  config_path: "/bbs/binkd/etc/binkd.conf" # Path to Binkd config
   repo: https://github.com/pgul/binkd.git # Binkd repo to use
 ````
 Dependencies

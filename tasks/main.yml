@@ -1,7 +1,12 @@
 ---
 - name: Install dependencies
-  package:
-    name: git
+  apt:
+    name: "{{ item }}"
+    update_cache: yes
+  with_items:
+    - git
+    - build-essential
+    - gcc
 
 - name: Clone Binkd
   git:

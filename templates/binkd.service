@@ -4,7 +4,7 @@ After=syslog.target network.target
 
 [Service]
 Type=forking
-ExecStart={{ binkd.home }}/sbin/binkd -D {{ binkd.home }}/etc/binkd.conf
+ExecStart={{ binkd.home }}/sbin/binkd -D {{ binkd.config_path }}
 PIDFile=/var/run/binkd.pid
 ExecReload=/bin/kill -HUP ${MAINPID}
 ExecStop=/bin/kill ${MAINPID}
