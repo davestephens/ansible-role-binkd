@@ -17,7 +17,7 @@
   shell: "cp {{ binkd.src }}/mkfls/unix/* {{ binkd.src }}"
 
 - name: Configure
-  shell: "cd {{ binkd.src }} && ./configure --prefix={{ binkd.home }}"
+  shell: "cd {{ binkd.src }} && ./configure"
 
 - name: Make
   make:

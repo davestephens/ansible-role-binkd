@@ -1,6 +1,5 @@
 ---
 binkd:
-  home: "/bbs/binkd"
-  config_path: "/bbs/binkd/etc/binkd.conf"
+  config_path: "/binkd/etc/binkd.conf"
   repo: "https://github.com/pgul/binkd.git"
   src: "{{ ansible_env.HOME }}/binkd-src"
