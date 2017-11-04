@@ -8,31 +8,39 @@
     - build-essential
     - gcc
 
+#- debug:
+#    var: "{{ binkd_repo }}"
+#
+#- debug:
+#    var: "{{ binkd_src }}"
+
 - name: Clone Binkd
   git:
-    repo: "{{ binkd.repo }}"
-    dest: "{{ binkd.src }}"
+    repo: "{{ binkd_repo }}"
+    dest: "{{ binkd_src }}"
 
 - name: Copy mkfls
-  shell: "cp {{ binkd.src }}/mkfls/unix/* {{ binkd.src }}"
+  shell: "cp {{ binkd_src }}/mkfls/unix/* {{ binkd_src }}"
 
 - name: Configure
-  shell: "cd {{ binkd.src }} && ./configure"
+  shell: "cd {{ binkd_src }} && ./configure --prefix={{ binkd_install_path }}"
 
 - name: Make
   make:
-    chdir: "{{ binkd.src }}"
+    chdir: "{{ binkd_src }}"
     params:
       j: 4
 
 - name: Install
   make:
-    chdir: "{{ binkd.src }}"
+    chdir: "{{ binkd_src }}"
     target: install
+  environment:
+    datarootdir: "{{ binkd_install_path }}"
 
 - name: Remove downloaded source
   file:
-    path: "{{ binkd.src }}"
+    path: "{{ binkd_src }}"
     state: absent
 
 - name: Template systemd unit
